@@ -10,3 +10,4 @@ jobs:
           curl --request POST \
           --url 'https://beach-importer.vercel.app/api/import' \
           --header 'Authorization: Bearer ${{ secrets.IMPORTER_API_KEY }}'
+        shell: bash
