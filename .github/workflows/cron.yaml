@@ -4,6 +4,7 @@ on:
     - cron: '*/15 * * * *'
 jobs:
   cron:
+    runs-on: ubuntu-latest
     using: "composite"
     steps:
       - name: Call our API route
