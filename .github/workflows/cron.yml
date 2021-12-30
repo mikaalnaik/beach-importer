@@ -10,3 +10,4 @@ jobs:
         run: |
           curl --request POST \
           --url 'https://yoursite.com/api/cron' \
+          --header 'Authorization: Bearer ${{ secrets.IMPORTER_API_KEY }}'
