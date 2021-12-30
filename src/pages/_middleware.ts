@@ -1,14 +1,13 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server';
 
 export function middleware(req: NextRequest) {
-  const basicAuth = req.headers.get('authorization')
+  const basicAuth = req.headers.get('authorization');
 
   if (basicAuth) {
-    const auth = basicAuth.split(' ')[1]
-
+    const auth = basicAuth.split(' ')[1];
 
     if (auth === process.env.API_SECRET_KEY) {
-      return NextResponse.next()
+      return NextResponse.next();
     }
   }
 
@@ -17,5 +16,5 @@ export function middleware(req: NextRequest) {
     headers: {
       'WWW-Authenticate': 'Basic realm="Secure Area"',
     },
-  })
+  });
 }
