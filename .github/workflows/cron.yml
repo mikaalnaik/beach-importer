@@ -9,5 +9,5 @@ jobs:
       - name: Call our API route
         run: |
           curl --request POST \
-          --url 'https://yoursite.com/api/cron' \
+          --url 'https://beach-importer.vercel.app/api/import' \
           --header 'Authorization: Bearer ${{ secrets.IMPORTER_API_KEY }}'
