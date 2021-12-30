@@ -20,10 +20,33 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
   const mongo = await connectToDatabase()
 
-  const latest = await mongo.db('beach_db').collection('ecoli_readings').find({} , { limit: 1 }).sort({ 'createdAt': 1 }).toArray()
-  console.log({latest});
+  const [ latest ] = await mongo
+    .db('beach_db')
+    .collection('ecoli_readings')
+    .find({} , { limit: 1 })
+    .sort({ 'createdAt': -1 })
+    .toArray()
 
-  res.status(200).json({ latest })
+
+
+
+
+
+
+  const { lastUpdate } = await fetch('https://secure.toronto.ca/opendata/adv/last_update/v1?format=json')
+    .then(res => res.json())
+
+  const formattedLastFormatDate = new Date(lastUpdate.split(' ')[0])
+
+
+
+
+
+    console.log({lastUpdate, latest});
+
+
+
+  res.status(200).json({ lastUpdate, latest })
 
 
 
