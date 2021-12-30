@@ -12,14 +12,7 @@ type Data = {
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   const rawResponse = await fetch('https://secure.toronto.ca/opendata/adv/beach_results/v1?format=json&startDate=2000-01-01&endDate=2021-12-30')
   const response: RawTorontoBeachDateResponse = await rawResponse.json()
-  console.log('response', response);
-
-
-
   const formattedResponse = formatBackfill(response)
-
-  console.log('formatted response', formattedResponse);
-
   const mongo = await connectToDatabase()
 
 

@@ -9,16 +9,31 @@ type formattedBackfillResponse = {
 }[]
 
 export default function formatBackfill(d: RawTorontoBeachDateResponse) {
-  return d.filter(v => v?.data).map(day => {
+  // return d.filter(v => v?.data).map(day => {
+  //   if (day.data) {
+  //     return {
+  //       createdAt: new Date(day.CollectionDate),
+  //       ecoliData: formatReadingsForDay(day.data, day.CollectionDate)
+  //     }
+  //   } else {
+  //     return null;
+  //   }
+  // })
+  return d.reduce((accum: { createdAt: Date, beachReadings: {}}[], day) => {
+
     if (day.data) {
-      return {
-        createdAt: new Date(day.CollectionDate),
-        ecoliData: formatReadingsForDay(day.data, day.CollectionDate)
-      }
+      return [
+        ...accum,
+        {
+          createdAt: new Date(day.CollectionDate),
+          beachReadings: formatReadingsForDay(day.data, day.CollectionDate)
+        }
+      ]
     } else {
-      return null;
+      return accum;
     }
-  })
+
+  }, [])
 }
 
 
