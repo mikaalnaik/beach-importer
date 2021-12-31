@@ -18,24 +18,24 @@ export default async function handler(
   // if last update from city of toronto is newer than last update from mongo, update mongo
   // if last update from city of toronto is older than last update from mongo, do nothing
 
-  const mongo = await connectToDatabase();
+  // const mongo = await connectToDatabase();
 
-  const [latest] = await mongo
-    .db('beach_db')
-    .collection('ecoli_readings')
-    .find({}, { limit: 1 })
-    .sort({ createdAt: -1 })
-    .toArray();
+  // const [latest] = await mongo
+  //   .db('beach_db')
+  //   .collection('ecoli_readings')
+  //   .find({}, { limit: 1 })
+  //   .sort({ createdAt: -1 })
+  //   .toArray();
 
-  const { lastUpdate } = await fetch(
-    'https://secure.toronto.ca/opendata/adv/last_update/v1?format=json'
-  ).then((res) => res.json());
+  // const { lastUpdate } = await fetch(
+  //   'https://secure.toronto.ca/opendata/adv/last_update/v1?format=json'
+  // ).then((res) => res.json());
 
-  const formattedLastFormatDate = new Date(lastUpdate.split(' ')[0]);
+  // const formattedLastFormatDate = new Date(lastUpdate.split(' ')[0]);
 
-  console.log({ lastUpdate, latest });
+  // console.log({ lastUpdate, latest });
 
-  res.status(200).json({ lastUpdate, latest });
+  res.status(200).json({ lastUpdate: 'howdy', latest: 'folks' });
 
   // const rawResponse = await fetch('https://secure.toronto.ca/opendata/adv/beach_results/v1?format=json&startDate=2000-01-01&endDate=2021-12-30')
   // const response: RawTorontoBeachDateResponse = await rawResponse.json()
