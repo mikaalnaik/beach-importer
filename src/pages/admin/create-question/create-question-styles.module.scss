@@ -1,0 +1,15 @@
+
+
+.form {
+  display: flex;
+  flex-direction: column;
+  margin: 0 2rem;
+
+  input,
+  select,
+  button {
+    height: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+}
